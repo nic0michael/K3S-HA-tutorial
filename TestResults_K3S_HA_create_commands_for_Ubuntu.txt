@@ -1,0 +1,130 @@
+The following servers were used to test this generated script
+=============================================================
+
+1) TEST SETUP
+=============
+
+server			ip address	O/S			type
+======			==========	===			====
+buffalo.loseyourip.com	10.154.2.88	Linux Mint 20.1 Ulyssa	Dell Server not VM
+kudu.loseyourip.com	10.154.2.93	Ubuntu 18.04.6 LTS	VirtualBox VM
+lion.loseyourip.com	10.154.2.97	Ubuntu 18.04.6 LTS	VirtualBox VM
+tiger.loseyourip.com	10.154.2.113	Linux Mint 20.3 Una	Toshiba Laptop not VM
+
+cat /etc/issue
+
+2)COMMANDS RUN
+==============
+
+## K3S_HA_create_commands_for_Ubuntu.txt ##
+############################
+# Create first master node #
+############################
+ssh nickm@10.154.2.88
+sudo su -
+/usr/local/bin/k3s-killall.sh
+/usr/local/bin/k3s-agent-uninstall.sh
+/usr/local/bin/k3s-uninstall.sh
+
+
+node_ip="10.154.2.88"
+node_name="buffalo.loseyourip.com"
+curl -sfL https://get.k3s.io | K3S_NODE_IP=${node_ip} K3S_NODE_NAME=${node_name} sh -s - server --cluster-init
+
+
+cat /var/lib/rancher/k3s/server/node-token
+Update the token in this file
+
+
+#############################
+# Create Second master node #
+#############################
+ssh nickm@10.154.2.93
+sudo su -
+/usr/local/bin/k3s-killall.sh
+/usr/local/bin/k3s-uninstall.sh
+/usr/local/bin/k3s-agent-uninstall.sh
+
+
+k3s_token="K1026e692c09900990359e4959bea4c6b5bf943ddb7b2ca1d4bb7edfae7bff181da::server:c2f4a96a9a957e2c838c33c2f5707164"
+k3s_url="https://10.154.2.88:6443"
+node_ip="10.154.2.93"
+node_name="kudu.loseyourip.com"
+curl -sfL https://get.k3s.io | K3S_TOKEN=${k3s_token} K3S_NODE_IP=${node_ip} K3S_NODE_NAME=${node_name} sh -s - server --server ${k3s_url}
+
+
+#############################
+# Create Third master node #
+#############################
+ssh nickm@10.154.2.97
+sudo su -
+/usr/local/bin/k3s-killall.sh
+/usr/local/bin/k3s-uninstall.sh
+/usr/local/bin/k3s-agent-uninstall.sh
+
+
+k3s_token="K1026e692c09900990359e4959bea4c6b5bf943ddb7b2ca1d4bb7edfae7bff181da::server:c2f4a96a9a957e2c838c33c2f5707164"
+k3s_url="https://10.154.2.88:6443"
+node_ip="10.154.2.97"
+node_name="lion.loseyourip.com"
+curl -sfL https://get.k3s.io | K3S_TOKEN=${k3s_token} K3S_NODE_IP=${node_ip} K3S_NODE_NAME=${node_name} sh -s - server --server ${k3s_url}
+
+
+############################
+# Create First Worker Node #
+############################
+ssh tonia@10.154.2.113
+sudo su -
+/usr/local/bin/k3s-killall.sh
+/usr/local/bin/k3s-uninstall.sh
+/usr/local/bin/k3s-agent-uninstall.sh
+
+
+k3s_token="K1026e692c09900990359e4959bea4c6b5bf943ddb7b2ca1d4bb7edfae7bff181da::server:c2f4a96a9a957e2c838c33c2f5707164"
+k3s_url="https://10.154.2.88:6443"
+node_ip="10.154.2.113"
+node_name="tiger.loseyourip.com"
+curl -sfL https://get.k3s.io | K3S_URL=${k3s_url} K3S_TOKEN=${k3s_token} K3S_NODE_IP=${node_ip} K3S_NODE_NAME=${node_name} sh -
+
+
+############################
+# Create Second Worker Node #
+############################
+ssh nickm@10.154.2.4
+sudo su -
+/usr/local/bin/k3s-killall.sh
+/usr/local/bin/k3s-uninstall.sh
+/usr/local/bin/k3s-agent-uninstall.sh
+
+
+k3s_token="K1026e692c09900990359e4959bea4c6b5bf943ddb7b2ca1d4bb7edfae7bff181da::server:c2f4a96a9a957e2c838c33c2f5707164"
+k3s_url="https://10.154.2.88:6443"
+node_ip="10.154.2.4"
+node_name="rabbit.loseyourip.com"
+curl -sfL https://get.k3s.io | K3S_URL=${k3s_url} K3S_TOKEN=${k3s_token} K3S_NODE_IP=${node_ip} K3S_NODE_NAME=${node_name} sh -
+############################
+
+
+ssh nickm@10.154.2.88
+sudo su -
+kubectl get nodes
+
+3) TEST RESULTS
+===============
+
+=====================================RESULTS with 3 Master servers =================================================================
+root@DELL-PC:~# kubectl get nodes
+NAME                     STATUS   ROLES                       AGE     VERSION
+buffalo.loseyourip.com   Ready    control-plane,etcd,master   52m     v1.24.4+k3s1
+kudu.loseyourip.com      Ready    control-plane,etcd,master   5m51s   v1.24.4+k3s1
+lion.loseyourip.com      Ready    control-plane,etcd,master   2m3s    v1.24.4+k3s1
+
+=====================================RESULTS with 3 Master servers and one worker added ============================================
+
+root@DELL-PC:~# kubectl get nodes
+NAME                     STATUS   ROLES                       AGE     VERSION
+buffalo.loseyourip.com   Ready    control-plane,etcd,master   56m     v1.24.4+k3s1
+kudu.loseyourip.com      Ready    control-plane,etcd,master   9m48s   v1.24.4+k3s1
+lion.loseyourip.com      Ready    control-plane,etcd,master   6m      v1.24.4+k3s1
+tiger.loseyourip.com     Ready    <none>                      19s     v1.24.4+k3s1
+=====================================================================================================================================
