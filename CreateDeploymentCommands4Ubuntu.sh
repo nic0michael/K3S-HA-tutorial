@@ -20,11 +20,11 @@ FIRST_WORKER_NODE_IP="10.154.2.113"
 SECOND_WORKER_NODE_IP="10.154.2.4"
 
 
-MASTER_NODE_NAME="buffalo.loseyourip.com"
-SECOND_MASTER_NODE_NAME="kudu.loseyourip.com"
-THIRD_MASTER_NODE_NAME="lion.loseyourip.com"
-FIRST_WORKER_NODE_NAME="tiger.loseyourip.com"
-SECOND_WORKER_NODE_NAME="rabbit.loseyourip.com"
+MASTER_NODE_NAME="buffalo.myk3s.com"
+SECOND_MASTER_NODE_NAME="kudu.myk3s.com"
+THIRD_MASTER_NODE_NAME="lion.myk3s.com"
+FIRST_WORKER_NODE_NAME="tiger.myk3s.com"
+SECOND_WORKER_NODE_NAME="rabbit.myk3s.com"
 
 MASTER_NODE_URL="https://$MASTER_NODE_IP:6443"
 
