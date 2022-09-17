@@ -82,7 +82,7 @@ sudo su -
 k3s_token="K1026e692c09900990359e4959bea4c6b5bf943ddb7b2ca1d4bb7edfae7bff181da::server:c2f4a96a9a957e2c838c33c2f5707164"
 k3s_url="https://10.154.2.88:6443"
 node_ip="10.154.2.4"
-node_name="rabbit.loseyourip.com"
+node_name="rabbit.myk3s.com"
 curl -sfL https://get.k3s.io | K3S_URL=${k3s_url} K3S_TOKEN=${k3s_token} K3S_NODE_IP=${node_ip} K3S_NODE_NAME=${node_name} sh -
 ############################
 
