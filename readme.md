@@ -8,7 +8,7 @@ CreateDeploymentCommands4Ubuntu.sh (this script has been tested with Ubuntu and 
 
 
 ## How to use the shell scripts
-You need to chose which of the above scripts you want to use. 
+You need to choose which of the above scripts you want to use. 
 
 ### Edit this shell script with your server and user details.
 nano CreateDeploymentCommands4Ubuntu.sh
