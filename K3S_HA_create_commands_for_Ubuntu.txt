@@ -10,7 +10,7 @@ sudo su -
 
 
 node_ip="10.154.2.88"
-node_name="buffalo.loseyourip.com"
+node_name="buffalo.myk3s.com"
 curl -sfL https://get.k3s.io | K3S_NODE_IP=${node_ip} K3S_NODE_NAME=${node_name} sh -s - server --cluster-init
 
 
@@ -31,7 +31,7 @@ sudo su -
 k3s_token="K1026e692c09900990359e4959bea4c6b5bf943ddb7b2ca1d4bb7edfae7bff181da::server:c2f4a96a9a957e2c838c33c2f5707164"
 k3s_url="https://10.154.2.88:6443"
 node_ip="10.154.2.93"
-node_name="kudu.loseyourip.com"
+node_name="kudu.myk3s.com"
 curl -sfL https://get.k3s.io | K3S_TOKEN=${k3s_token} K3S_NODE_IP=${node_ip} K3S_NODE_NAME=${node_name} sh -s - server --server ${k3s_url}
 
 
@@ -48,7 +48,7 @@ sudo su -
 k3s_token="K1026e692c09900990359e4959bea4c6b5bf943ddb7b2ca1d4bb7edfae7bff181da::server:c2f4a96a9a957e2c838c33c2f5707164"
 k3s_url="https://10.154.2.88:6443"
 node_ip="10.154.2.97"
-node_name="lion.loseyourip.com"
+node_name="lion.myk3s.com"
 curl -sfL https://get.k3s.io | K3S_TOKEN=${k3s_token} K3S_NODE_IP=${node_ip} K3S_NODE_NAME=${node_name} sh -s - server --server ${k3s_url}
 
 
@@ -65,7 +65,7 @@ sudo su -
 k3s_token="K1026e692c09900990359e4959bea4c6b5bf943ddb7b2ca1d4bb7edfae7bff181da::server:c2f4a96a9a957e2c838c33c2f5707164"
 k3s_url="https://10.154.2.88:6443"
 node_ip="10.154.2.113"
-node_name="tiger.loseyourip.com"
+node_name="tiger.myk3s.com"
 curl -sfL https://get.k3s.io | K3S_URL=${k3s_url} K3S_TOKEN=${k3s_token} K3S_NODE_IP=${node_ip} K3S_NODE_NAME=${node_name} sh -
 
 
@@ -82,7 +82,7 @@ sudo su -
 k3s_token="K1026e692c09900990359e4959bea4c6b5bf943ddb7b2ca1d4bb7edfae7bff181da::server:c2f4a96a9a957e2c838c33c2f5707164"
 k3s_url="https://10.154.2.88:6443"
 node_ip="10.154.2.4"
-node_name="rabbit.loseyourip.com"
+node_name="rabbit.myk3s.com"
 curl -sfL https://get.k3s.io | K3S_URL=${k3s_url} K3S_TOKEN=${k3s_token} K3S_NODE_IP=${node_ip} K3S_NODE_NAME=${node_name} sh -
 ############################
 
@@ -94,16 +94,16 @@ kubectl get nodes
 =====================================RESULTS with 3 Master servers =================================================================
 root@DELL-PC:~# kubectl get nodes
 NAME                     STATUS   ROLES                       AGE     VERSION
-buffalo.loseyourip.com   Ready    control-plane,etcd,master   52m     v1.24.4+k3s1
-kudu.loseyourip.com      Ready    control-plane,etcd,master   5m51s   v1.24.4+k3s1
-lion.loseyourip.com      Ready    control-plane,etcd,master   2m3s    v1.24.4+k3s1
+buffalo.myk3s.com   Ready    control-plane,etcd,master   52m     v1.24.4+k3s1
+kudu.myk3s.com      Ready    control-plane,etcd,master   5m51s   v1.24.4+k3s1
+lion.myk3s.com      Ready    control-plane,etcd,master   2m3s    v1.24.4+k3s1
 
 =====================================RESULTS with 3 Master servers and one worker added ============================================
 
 root@DELL-PC:~# kubectl get nodes
 NAME                     STATUS   ROLES                       AGE     VERSION
-buffalo.loseyourip.com   Ready    control-plane,etcd,master   56m     v1.24.4+k3s1
-kudu.loseyourip.com      Ready    control-plane,etcd,master   9m48s   v1.24.4+k3s1
-lion.loseyourip.com      Ready    control-plane,etcd,master   6m      v1.24.4+k3s1
-tiger.loseyourip.com     Ready    <none>                      19s     v1.24.4+k3s1
+buffalo.myk3s.com   Ready    control-plane,etcd,master   56m     v1.24.4+k3s1
+kudu.myk3s.com      Ready    control-plane,etcd,master   9m48s   v1.24.4+k3s1
+lion.myk3s.com      Ready    control-plane,etcd,master   6m      v1.24.4+k3s1
+tiger.myk3s.com     Ready    <none>                      19s     v1.24.4+k3s1
 =====================================================================================================================================
