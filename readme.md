@@ -1,9 +1,9 @@
 # K3S-HA Create Commands tutorial
 This is a simple solution that gets you started quickly and easily with K3S High Availability clusters
 
-This project provides you with a choice of two shell scripts that generates a text file with all the commands you need to run on the Firrts 3 Master servers as well as on your worker node servers
+This project provides you with a choice of two shell scripts that generates a text file with all the commands you need to run on the First 3 Master servers as well as on your worker node servers
 
-edit one of two shell scripts provided you want to use with the parameters your your servers and use it to generate all the commands you need to run on your servers in a single text file
+Edit one of two shell scripts provided you want to use with the parameters your your servers and use it to generate all the commands you need to run on your servers in a single text file
 
 
 ## Two create scripts provided
