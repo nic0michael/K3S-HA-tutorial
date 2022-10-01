@@ -10,7 +10,7 @@ LOGIN_USER3="nickm"
 LOGIN_USER4="tonia"
 LOGIN_USER5="nickm"
 
-#You need to change this token after the installation of the master node has been creaated
+#You need to cahnge this token after the installation of the master node has been creaated
 MASTER_TOKEN="K1026e692c09900990359e4959bea4c6b5bf943ddb7b2ca1d4bb7edfae7bff181da::server:c2f4a96a9a957e2c838c33c2f5707164"
 
 MASTER_NODE_IP="10.154.2.88"
@@ -20,11 +20,11 @@ FIRST_WORKER_NODE_IP="10.154.2.113"
 SECOND_WORKER_NODE_IP="10.154.2.4"
 
 
-MASTER_NODE_NAME="buffalo.myk3s.com"
-SECOND_MASTER_NODE_NAME="kudu.myk3s.com"
-THIRD_MASTER_NODE_NAME="lion.myk3s.com"
-FIRST_WORKER_NODE_NAME="tiger.myk3s.com"
-SECOND_WORKER_NODE_NAME="rabbit.myk3s.com"
+MASTER_NODE_NAME="buffalo.loseyourip.com"
+SECOND_MASTER_NODE_NAME="kudu.loseyourip.com"
+THIRD_MASTER_NODE_NAME="lion.loseyourip.com"
+FIRST_WORKER_NODE_NAME="tiger.loseyourip.com"
+SECOND_WORKER_NODE_NAME="rabbit.loseyourip.com"
 
 MASTER_NODE_URL="https://$MASTER_NODE_IP:6443"
 

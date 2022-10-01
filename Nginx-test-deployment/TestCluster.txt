@@ -1,0 +1,147 @@
+######################################
+#open Master Node server in terminal #
+######################################
+ssh nickm@10.154.2.88
+sudo su -
+
+kubectl get nodes
+NAME                  STATUS   ROLES                  AGE     VERSION
+kudu.loseyourip.com   Ready    control-plane,master   84m     v1.24.3+k3s1
+lion.loseyourip.com   Ready    <none>                 3m38s   v1.24.3+k3s1
+
+
+
+#######################
+# Deploying a Service #
+#######################
+
+NGINX instances are being deployed to the cluster with the following manifest
+-----------------------------------------------------------------------------
+##########################
+# Create Deployment YAML #
+##########################
+nano nginx-deployment.yml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 10
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+
+##########################
+# Install thisdeployment #
+##########################
+kubectl apply -f nginx-deployment.yml
+
+#
+# Verify that there are 10 pods running an instance of NGINX
+#
+kubectl get pods -l app=nginx --output=wide
+
+######################
+# Create the service #
+######################
+#
+# Create the service YAML
+#
+
+nano nginx-service.yml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  labels:
+    run: nginx
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: nginx
+
+# Apply the service
+#
+kubectl apply -f nginx-service.yml
+
+#
+# Check if service worked
+#
+kubectl get services
+
+# RESPONSE
+NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.43.0.1       <none>        443/TCP   13h
+nginx        ClusterIP   10.43.250.220   <none>        80/TCP    13s
+
+#
+#Get endpoints
+#
+kubectl get endpoints
+
+# RESPONSE
+
+NAME         ENDPOINTS                                              AGE
+kubernetes   10.154.2.88:6443,10.154.2.93:6443,10.154.2.97:6443     13h
+nginx        10.42.0.14:80,10.42.0.15:80,10.42.1.4:80 + 7 more...   71sm
+
+
+#
+# Open an instance of nginx with curl command
+#
+ curl http://10.42.0.14:80
+#### and 
+curl http://10.43.16.183
+
+########################
+# Exposing the Service #
+########################
+nano service-exposed.yaml
+
+# apiVersion: networking.k8s.io/v1beta1 # for k3s < v1.19
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx
+            port:
+              number: 80
+
+#
+# Exposing the service
+# 
+
+kubectl apply -f service-exposed.yaml
+
+curl localhost:80
+
+Now open nginx in your browser
+http://kudu.loseyourip.com/
+
+
+
+http://lion.loseyourip.com/
