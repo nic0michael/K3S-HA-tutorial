@@ -2,7 +2,7 @@
 
 #nano CreateDeploymentCommands4Ubuntu.sh
 #chmod 775 CreateDeploymentCommands4Ubuntu.sh
-#./CreateDeploymentCommands4Ubuntu.sh
+#./CreateDeploymentCommands4Ubuntu.sh > make-ubuntu-ha-cluster.txt
 
 LOGIN_USER1="nickm"
 LOGIN_USER2="nickm"
@@ -10,7 +10,7 @@ LOGIN_USER3="nickm"
 LOGIN_USER4="tonia"
 LOGIN_USER5="nickm"
 
-#You need to cahnge this token after the installation of the master node has been creaated
+#You need to change this token after the installation of the master node has been creaated
 MASTER_TOKEN="K1026e692c09900990359e4959bea4c6b5bf943ddb7b2ca1d4bb7edfae7bff181da::server:c2f4a96a9a957e2c838c33c2f5707164"
 
 MASTER_NODE_IP="10.154.2.88"
@@ -29,7 +29,7 @@ SECOND_WORKER_NODE_NAME="rabbit.loseyourip.com"
 MASTER_NODE_URL="https://$MASTER_NODE_IP:6443"
 
 
-echo "## K3S_HA_create_commands_for_Ubuntu.txt ##" 
+echo "## K3S_HA_create_commands_for_Ubuntu.txt ##"
 
 echo "############################"
 echo "# Create first master node #"
@@ -117,3 +117,35 @@ echo "sudo su -"
 echo "kubectl get nodes"
 
 
+echo "#######################"
+echo "# Destroy all servers #"
+echo "#######################"
+echo "ssh $LOGIN_USER1@$MASTER_NODE_IP"
+echo "sudo su -"
+echo "/usr/local/bin/k3s-killall.sh"
+echo "/usr/local/bin/k3s-uninstall.sh"
+echo "/usr/local/bin/k3s-agent-uninstall.sh"
+echo "\n"
+echo "ssh $LOGIN_USER2@$SECOND_MASTER_NODE_IP"
+echo "sudo su -"
+echo "/usr/local/bin/k3s-killall.sh"
+echo "/usr/local/bin/k3s-uninstall.sh"
+echo "/usr/local/bin/k3s-agent-uninstall.sh"
+echo "\n"
+echo "ssh $LOGIN_USER3@$THIRD_MASTER_NODE_IP"
+echo "sudo su -"
+echo "/usr/local/bin/k3s-killall.sh"
+echo "/usr/local/bin/k3s-uninstall.sh"
+echo "/usr/local/bin/k3s-agent-uninstall.sh"
+echo "\n"
+echo "ssh $LOGIN_USER4@$FIRST_WORKER_NODE_IP"
+echo "sudo su -"
+echo "/usr/local/bin/k3s-killall.sh"
+echo "/usr/local/bin/k3s-uninstall.sh"
+echo "/usr/local/bin/k3s-agent-uninstall.sh"
+echo "\n"
+echo "ssh $LOGIN_USER5@$SECOND_WORKER_NODE_IP"
+echo "sudo su -"
+echo "/usr/local/bin/k3s-killall.sh"
+echo "/usr/local/bin/k3s-uninstall.sh"
+echo "/usr/local/bin/k3s-agent-uninstall.sh"
