@@ -31,6 +31,8 @@ Now paste the content of this file:
 
 https://github.com/nic0michael/K3S-HA-tutorial/blob/master/CreateHA-ClusterDeploymentCommands4Ubuntu.sh
 
+Then got to the top of the file and update your server IP addresses you user Id anf DNS names for those servers
+
 Then press Ctrl X  and then press the Y key and press the enter key
 
 ### 2) Make the shell script executable
