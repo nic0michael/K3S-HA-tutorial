@@ -41,7 +41,7 @@ chmod 775 CreateDeploymentCommands4Ubuntu.sh
 ### 4) You now can use the file to create all your Node Servers
 ubuntuServerDeploymentList.txt
 
-Now run this command to display this facilities
+Now run this command to display this file
 ```
 cat ubuntuServerDeploymentList.txt
 ```
@@ -63,7 +63,7 @@ nano CreateDeploymentCommands4Ubuntu.sh
 ubuntuServerDeploymentList.txt
 
 
-Now run this command to display this facilities
+Now run this command to display this file
 ```
 cat ubuntuServerDeploymentList.txt
 ```
