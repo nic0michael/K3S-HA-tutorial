@@ -5,6 +5,13 @@ This project provides you with a choice of two shell scripts that generates a te
 
 Edit one of two shell scripts provided you want to use with the parameters your your servers and use it to generate all the commands you need to run on your servers in a single text file
 
+## Setup Required
+* You need 4/5 Linux Servers with Ubuntu 22.04 server installed
+* I used two PC's with Mint Linux Workstation and installed Virtual Box on each and added one Ubuntu 22.04 server VM
+* You need to setup Static IP addresses for each server
+* You need to setup a free account with DynuDNS  :  https://www.dynu.com/en-US/ControlPanel/Login
+* With DynuDNS you create 4 free Dynamic DNS entries for your servers:  https://www.dynu.com/en-US/ControlPanel/DDNS
+* Enter the Host name you want (I used animals) and Chose a suitable Toplevel name 
 
 ## Two create scripts provided
 
