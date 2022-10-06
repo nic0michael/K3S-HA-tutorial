@@ -27,6 +27,11 @@ You need to choose which of the above scripts you want to use.
 ```
 nano CreateDeploymentCommands4Ubuntu.sh
 ```
+Now paste the content of this file:
+
+https://github.com/nic0michael/K3S-HA-tutorial/blob/master/CreateHA-ClusterDeploymentCommands4Ubuntu.sh
+
+Then press Ctrl X  and then press the Y key and press the enter key
 
 ### 2) Make the shell script executable
 ```
