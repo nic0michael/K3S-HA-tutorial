@@ -41,16 +41,29 @@ chmod 775 CreateDeploymentCommands4Ubuntu.sh
 ### 4) You now can use the file to create all your Node Servers
 ubuntuServerDeploymentList.txt
 
-### 5) After creating the First Master Server Node edit the shell script and update the MASTER_TOKEN  
-[run on the server to get token] 
+Now run this command to display this facilities
+```
+cat ubuntuServerDeploymentList.txt
+```
+
+### 5) After creating the First Master Server Node get the MASTER_TOKEN  
+run on the server to get token
 ```
 cat /var/lib/rancher/k3s/server/node-token
 ```
-Now Edit the script and update the Master Token
+### 6) Now Edit the script and update the Master Token in it
 ```
 nano CreateDeploymentCommands4Ubuntu.sh
 ```
-Nor run the script again
+### 7) Now run the script again
 ```
 ./CreateDeploymentCommands4Ubuntu.sh > ubuntuServerDeploymentList.txt
+```
+### 8) You now can use the file to create all your Node Servers
+ubuntuServerDeploymentList.txt
+
+
+Now run this command to display this facilities
+```
+cat ubuntuServerDeploymentList.txt
 ```
