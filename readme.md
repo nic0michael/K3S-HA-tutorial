@@ -11,7 +11,7 @@ Edit one of two shell scripts provided you want to use with the parameters your 
 * You need to setup Static IP addresses for each server
 * You need to setup a free account with DynuDNS  :  https://www.dynu.com/en-US/ControlPanel/Login
 * With DynuDNS you create 4 free Dynamic DNS entries for your servers:  https://www.dynu.com/en-US/ControlPanel/DDNS
-* Enter the Host name you want (I used animals) and Chose a suitable Toplevel name 
+* Enter the Host name you want (I used animals) and Choose a suitable Toplevel name 
 
 ## Two create scripts provided
 
