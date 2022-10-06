@@ -9,19 +9,19 @@ Edit one of two shell scripts provided you want to use with the parameters your 
 * You need 4/5 Linux Servers with Ubuntu 22.04 server installed
 * I used two PC's with Mint Linux Workstation and installed Virtual Box on each and added one Ubuntu 22.04 server VM
 * You need to setup Static IP addresses for each server
+* You need DNS entries for your servers if you don't have facilities to do that DynuDNS will give you 4 DNS entries for free
 * You need to setup a free account with DynuDNS  :  https://www.dynu.com/en-US/ControlPanel/Login
 * With DynuDNS you create 4 free Dynamic DNS entries for your servers:  https://www.dynu.com/en-US/ControlPanel/DDNS
 * Enter the Host name you want "elephant" (I used animals) and Choose a suitable Toplevel name "kozow.com"
 
 ## Two create scripts provided
 
-CreateDeploymentCommands.sh
+CreateDeploymentCommands4Ubuntu.sh (this script has been tested with both Ubuntu and Mint Linux) get it here:
 
-CreateDeploymentCommands4Ubuntu.sh (this script has been tested with Ubuntu and Mint Linux)
-
+https://github.com/nic0michael/K3S-HA-tutorial/blob/master/CreateHA-ClusterDeploymentCommands4Ubuntu.sh
 
 ## How to use the shell scripts
-You need to choose which of the above scripts you want to use. 
+You need to choose which of the above scripts you want to use.
 
 ### 1) Edit this shell script with your server and user details.
 nano CreateDeploymentCommands4Ubuntu.sh
