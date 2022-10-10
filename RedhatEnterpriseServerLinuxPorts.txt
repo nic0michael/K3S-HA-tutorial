@@ -1,0 +1,19 @@
+# https://docs.ranchermanager.rancher.io/v2.5/getting-started/installation-and-upgrade/installation-requirements/port-requirements#:~:text=The%20K3s%20server%20needs%20port,when%20Flannel%20VXLAN%20is%20used.
+
+
+sudo su -
+
+firewall-cmd --permanent --add-port=6443/tcp
+firewall-cmd --permanent --add-port=2376/tcp
+firewall-cmd --permanent --add-port=2379/tcp
+firewall-cmd --permanent --add-port=2380/tcp
+firewall-cmd --permanent --add-port=2389/tcp
+firewall-cmd --permanent --add-port=8472/udp
+firewall-cmd --permanent --add-port=9099/tcp
+firewall-cmd --permanent --add-port=10250/tcp
+firewall-cmd --permanent --add-port=10251/tcp
+firewall-cmd --permanent --add-port=10252/tcp
+firewall-cmd --permanent --add-port=10254/tcp
+
+firewall-cmd --reload
+firewall-cmd --list-ports
