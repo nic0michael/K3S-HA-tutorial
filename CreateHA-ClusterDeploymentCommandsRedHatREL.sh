@@ -98,10 +98,13 @@ echo "# Create Third master node #"
 echo "#############################"
 echo "ssh $LOGIN_USER3@$THIRD_MASTER_NODE_IP"
 echo "sudo su -"
-
-
 echo "#You need to disable Firewall on this server"
 echo "sudo systemctl disable firewalld --now"
+echo "reboot"
+
+# After Rebooting
+echo "ssh $LOGIN_USER3@$THIRD_MASTER_NODE_IP"
+echo "sudo su -"
 
 
 echo "/usr/local/bin/k3s-killall.sh"
