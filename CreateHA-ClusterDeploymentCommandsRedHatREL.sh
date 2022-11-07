@@ -55,10 +55,13 @@ echo "# Create first master node #"
 echo "############################"
 echo "ssh $LOGIN_USER1@$MASTER_NODE_IP"
 echo "sudo su -"
-
 echo "#You need to disable Firewall on this server"
 echo "sudo systemctl disable firewalld --now"
+echo "reboot"
 
+# After Rebooting
+echo "ssh $LOGIN_USER1@$MASTER_NODE_IP"
+echo "sudo su -"
 
 echo "/usr/local/bin/k3s-killall.sh"
 echo "/usr/local/bin/k3s-agent-uninstall.sh"
@@ -77,10 +80,13 @@ echo "# Create Second master node #"
 echo "#############################"
 echo "ssh $LOGIN_USER2@$SECOND_MASTER_NODE_IP"
 echo "sudo su -"
-
-
 echo "#You need to disable Firewall on this server"
 echo "sudo systemctl disable firewalld --now"
+echo "reboot"
+
+# After Rebooting
+echo "ssh $LOGIN_USER2@$SECOND_MASTER_NODE_IP"
+echo "sudo su -"
 
 echo "/usr/local/bin/k3s-killall.sh"
 echo "/usr/local/bin/k3s-uninstall.sh"
@@ -122,11 +128,15 @@ echo "############################"
 echo "# Create First Worker Node #"
 echo "############################"
 echo "ssh $LOGIN_USER4@$FIRST_WORKER_NODE_IP"
+
 echo "sudo su -"
-
-
 echo "#You need to disable Firewall on this server"
 echo "sudo systemctl disable firewalld --now"
+echo "reboot"
+
+# After Rebooting
+echo "ssh $LOGIN_USER4@$FIRST_WORKER_NODE_IP"
+echo "sudo su -"
 
 echo "/usr/local/bin/k3s-killall.sh"
 echo "/usr/local/bin/k3s-uninstall.sh"
@@ -143,11 +153,15 @@ echo "############################"
 echo "# Create Second Worker Node #"
 echo "############################"
 echo "ssh $LOGIN_USER5@$SECOND_WORKER_NODE_IP"
+
 echo "sudo su -"
-
-
 echo "#You need to disable Firewall on this server"
 echo "sudo systemctl disable firewalld --now"
+echo "reboot"
+
+# After Rebooting
+echo "ssh $LOGIN_USER5@$SECOND_WORKER_NODE_IP"
+echo "sudo su -"
 
 echo "/usr/local/bin/k3s-killall.sh"
 echo "/usr/local/bin/k3s-uninstall.sh"
