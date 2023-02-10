@@ -1,9 +1,21 @@
 #!/bin/sh
 
-#nano CreateDeploymentCommands4Ubuntu.sh
-#chmod 775 CreateDeploymentCommands4Ubuntu.sh
-#./CreateDeploymentCommands4Ubuntu.sh > make-ubuntu-ha-cluster.txt
+## 1. INSTALL NANO ##
+echo "sudo apt install nano"
 
+## 2. CREATE AND EDIT THIS FILE LOCALLY ##
+# nano CreateDeploymentCommands4Ubuntu.sh
+
+# You will need to update the details for your servers
+# Now make changes for steps 3. to 5.
+
+## MAKE THIS FILE EXECUTABLE ##
+# chmod 775 CreateDeploymentCommands4Ubuntu.sh
+
+## GENERATE THE KUBERNETES CLUSTER DEPLOYMENT CHECKLIST ##
+# ./CreateDeploymentCommands4Ubuntu.sh > make-ubuntu-ha-cluster.txt
+
+## 3. EDIT YOUR SERVER USER IDS ##
 LOGIN_USER1="nickm"
 LOGIN_USER2="nickm"
 LOGIN_USER3="nickm"
@@ -13,13 +25,14 @@ LOGIN_USER5="nickm"
 #You need to change this token after the installation of the master node has been creaated
 MASTER_TOKEN="K1026e692c09900990359e4959bea4c6b5bf943ddb7b2ca1d4bb7edfae7bff181da::server:c2f4a96a9a957e2c838c33c2f5707164"
 
+## 4. EDIT YOUR SERVER IP ADDRESSES ##
 MASTER_NODE_IP="10.154.2.88"
 SECOND_MASTER_NODE_IP="10.154.2.188"
 THIRD_MASTER_NODE_IP="10.154.2.93"
 FIRST_WORKER_NODE_IP="10.154.2.188"
 SECOND_WORKER_NODE_IP="10.154.2.93"
 
-
+## 5. EDIT YOUR SERVER FQDNs (Fully Qualified Domain Names) ##
 MASTER_NODE_NAME="buffalo.loseyourip.com"
 SECOND_MASTER_NODE_NAME="tiger.loseyourip.com"
 THIRD_MASTER_NODE_NAME="kudu.loseyourip.com"
