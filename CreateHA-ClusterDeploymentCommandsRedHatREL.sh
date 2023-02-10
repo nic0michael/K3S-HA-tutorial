@@ -1,9 +1,13 @@
 
 #!/bin/sh
 
-## DISABLE FIREWALL ##
+## PERMANENTLY DISABLE FIREWALL ##
 # Instructions can be found here
 # https://linuxhint.com/disable-firewall-centos-8/
+
+# IF YOU HAVE A PROBLEM CREATING THE OTHER NODES  AFTER CREATING THE MASTER NODE 
+# When installing my K3s worker, k3s fails to start due to "level=error msg="failed to get CA c>"
+# https://stackoverflow.com/questions/65872993/kubernetes-k3s-agent-cant-connect-to-master-ca-ssl-error
 
 ## 1. INSTALL NANO ##
 echo "sudo yum install nano"
