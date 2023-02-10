@@ -1,7 +1,7 @@
 
 #!/bin/sh
 
-## PERMANENTLY DISABLE FIREWALL ##
+## PERMANENTLY DISABLE FIREWALL ON MASTER and OTHER SERVERS ##
 # Instructions can be found here
 # https://linuxhint.com/disable-firewall-centos-8/
 
