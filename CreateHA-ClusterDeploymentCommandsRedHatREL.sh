@@ -1,22 +1,27 @@
 
 #!/bin/sh
 
-## PERMANENTLY DISABLE FIREWALL ON MASTER and OTHER SERVERS ##
+## 1. PERMANENTLY DISABLE FIREWALL ON MASTER AND OTHER SERVERS ##
 # Instructions can be found here
 # https://linuxhint.com/disable-firewall-centos-8/
+
+## 2. INSTALL OPEN_SSH ON MASTER AND OTHER SERVERS ##
+# Instructions can be found here
+# https://linuxways.net/centos/how-to-enable-ssh-on-centos/
 
 # IF YOU HAVE A PROBLEM CREATING THE OTHER NODES  AFTER CREATING THE MASTER NODE 
 # When installing my K3s worker, k3s fails to start due to "level=error msg="failed to get CA c>"
 # https://stackoverflow.com/questions/65872993/kubernetes-k3s-agent-cant-connect-to-master-ca-ssl-error
 
-## 1. INSTALL NANO ##
+## 3. INSTALL NANO ##
 echo "sudo yum install nano"
+echo "sudo dnf install nano"
 
-## 2. CREATE AND EDIT THIS FILE LOCALLY ##
+## 4. CREATE AND EDIT THIS FILE LOCALLY ##
 # nano CreateDeploymentCommands4Ubuntu.sh
 
 # You will need to update the details for your servers
-# Now make changes for steps 3. to 5.
+# Now make changes for steps 5. to 7.
 
 ## MAKE THIS FILE EXECUTABLE ##
 # chmod 775 CreateDeploymentCommands4Ubuntu.sh
@@ -24,7 +29,7 @@ echo "sudo yum install nano"
 ## GENERATE THE KUBERNETES CLUSTER DEPLOYMENT CHECKLIST ##
 # ./CreateDeploymentCommands4Ubuntu.sh > make-ubuntu-ha-cluster.txt
 
-## 3. EDIT YOUR SERVER USER IDS ##
+## 5. EDIT YOUR SERVER USER IDS ##
 LOGIN_USER1="nickm"
 LOGIN_USER2="nickm"
 LOGIN_USER3="nickm"
@@ -34,14 +39,14 @@ LOGIN_USER5="nickm"
 #You need to change this token after the installation of the master node has been creaated
 MASTER_TOKEN="K1026e692c09900990359e4959bea4c6b5bf943ddb7b2ca1d4bb7edfae7bff181da::server:c2f4a96a9a957e2c838c33c2f5707164"
 
-## 4. EDIT YOUR SERVER IP ADDRESSES ##
+## 6. EDIT YOUR SERVER IP ADDRESSES ##
 MASTER_NODE_IP="10.154.2.88"
 SECOND_MASTER_NODE_IP="10.154.2.188"
 THIRD_MASTER_NODE_IP="10.154.2.93"
 FIRST_WORKER_NODE_IP="10.154.2.188"
 SECOND_WORKER_NODE_IP="10.154.2.93"
 
-## 5. EDIT YOUR SERVER FQDNs (Fully Qualified Domain Names) ##
+## 7. EDIT YOUR SERVER FQDNs (Fully Qualified Domain Names) ##
 MASTER_NODE_NAME="buffalo.loseyourip.com"
 SECOND_MASTER_NODE_NAME="tiger.loseyourip.com"
 THIRD_MASTER_NODE_NAME="kudu.loseyourip.com"
