@@ -74,3 +74,16 @@ Now run this command to display this file
 ```
 cat ubuntuServerDeploymentList.txt
 ```
+
+## New Python Script
+We now have a Python Script that works with a YAML file allowing you to configure what is generated 
+
+
+**This can produce 3 kinds of Clusters in your K3S server:**
+
+1. K3S-HA Cluster with multiple Master Nodes and Multiple worker Nodes
+2. K3S Cluster with one Master Nodes and Multiple worker Nodes
+3. K3S Minimal Cluster with only a master Node and no Worker Nodes
+
+**If you want to clone this please clone it from this project:**
+https://github.com/nic0michael/K3S_Cluster_Maker

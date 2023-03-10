@@ -1,0 +1,61 @@
+import yaml
+
+# Read the AllNodesConfig.yaml file
+with open("AllNodesConfig.yaml", "r") as f:
+    nodes = yaml.safe_load(f)
+
+# Generate the target file
+with open(nodes["targetFile"], "w") as f:
+    # Primary Master Node
+    f.write("#######################\n")
+    f.write("# " + nodes["primaryNode"]["nickname"] + " #\n")
+    f.write("#######################\n")
+    f.write("ssh " + nodes["primaryNode"]["userId"] + "@" + nodes["primaryNode"]["ipAddress"] + "\n")
+    f.write("sudo su -\n")
+    f.write("/usr/local/bin/k3s-killall.sh\n")
+    f.write("/usr/local/bin/k3s-agent-uninstall.sh\n")
+    f.write("/usr/local/bin/k3s-uninstall.sh\n")
+    f.write("\n")
+    f.write('node_ip="' + nodes["primaryNode"]["ipAddress"] + '"\n')
+    f.write('node_name="' + nodes["primaryNode"]["fqdn"] + '"\n')
+    f.write('curl -sfL https://get.k3s.io | K3S_NODE_IP=${node_ip} K3S_NODE_NAME=${node_name} sh -s - server --cluster-init\n')
+    f.write("\n")
+    f.write("cat /var/lib/rancher/k3s/server/node-token\n")
+    f.write("Update the token in this file\n\n")
+
+    # Other Master Nodes
+    for node in nodes["otherMasterNodes"]:
+        f.write("#######################\n")
+        f.write("# " + node["nickname"] + " #\n")
+        f.write("#######################\n")
+        f.write("ssh " + node["userId"] + "@" + node["ipAddress"] + "\n")
+        f.write("sudo su -\n")
+        f.write("/usr/local/bin/k3s-killall.sh\n")
+        f.write("/usr/local/bin/k3s-uninstall.sh\n")
+        f.write("/usr/local/bin/k3s-agent-uninstall.sh\n")
+        f.write("\n")
+        f.write('k3s_token="' + nodes["primaryNode"]["k3sToken"] + '"\n')
+        f.write('k3s_url="https://' + nodes["primaryNode"]["ipAddress"] + ':6443"\n')
+        f.write('node_ip="' + node["ipAddress"] + '"\n')
+        f.write('node_name="' + node["fqdn"] + '"\n')
+        f.write('curl -sfL https://get.k3s.io | K3S_TOKEN=${k3s_token} K3S_NODE_IP=${node_ip} K3S_NODE_NAME=${node_name} sh -s - server --server ${k3s_url}\n\n')
+
+
+    # Worker Nodes
+    for node in nodes["workernodes"]:
+        f.write("#######################\n")
+        f.write("# " + node["nickname"] + " #\n")
+        f.write("#######################\n")
+        f.write("ssh " + node["userId"] + "@" + node["ipAddress"] + "\n")
+        f.write("sudo su -\n")
+        f.write("/usr/local/bin/k3s-killall.sh\n")
+        f.write("/usr/local/bin/k3s-uninstall.sh\n")
+        f.write("/usr/local/bin/k3s-agent-uninstall.sh\n")
+        f.write("\n")
+        f.write('k3s_token="' + nodes["primaryNode"]["k3sToken"] + '"\n')
+        f.write('k3s_url="https://' + nodes["primaryNode"]["ipAddress"] + ':6443"\n')
+        f.write('node_ip="' + node["ipAddress"] + '"\n')
+        f.write('node_name="' + node["fqdn"] + '"\n')
+        f.write('curl -sfL https://get.k3s.io | K3S_URL=${k3s_url} K3S_TOKEN=${k3s_token} K3S_NODE_IP=${node_ip} K3S_NODE_NAME=${node_name} sh -\n\n')
+
+

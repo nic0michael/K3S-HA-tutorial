@@ -1,0 +1,26 @@
+---
+primaryNode:
+  nickname: Primary Master Node
+  ipAddress: 10.154.2.88
+  fqdn: buffalo.loseyourip.com
+  userId: nickm
+  k3sToken: K1026e692c09900990359e4959bea4c6b5bf943ddb7b2ca1d4bb7edfae7bff181da::server:c2f4a96a9a957e2c838c33c2f5707164
+otherMasterNodes:
+- nickname: Second Master Node
+  ipAddress: 10.154.2.93
+  fqdn: kudu.loseyourip.com
+  userId: nickm
+- nickname: Third Master Node
+  ipAddress: 10.154.2.89
+  fqdn: upupu.loseyourip.com
+  userId: nickm
+workernodes:
+- nickname: First Worker Node
+  ipAddress: 10.154.2.4
+  fqdn: rabbit.loseyourip.com
+  userId: nickm
+- nickname: Second Worker Node
+  ipAddress: 10.154.2.188
+  fqdn: tiger.loseyourip.com
+  userId: nickm
+targetFile: cluster_deployment_file.txt

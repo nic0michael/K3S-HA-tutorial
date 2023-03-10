@@ -1,0 +1,76 @@
+#######################
+# Primary Master Node #
+#######################
+ssh nickm@10.154.2.88
+sudo su -
+/usr/local/bin/k3s-killall.sh
+/usr/local/bin/k3s-agent-uninstall.sh
+/usr/local/bin/k3s-uninstall.sh
+
+node_ip="10.154.2.88"
+node_name="buffalo.loseyourip.com"
+curl -sfL https://get.k3s.io | K3S_NODE_IP=${node_ip} K3S_NODE_NAME=${node_name} sh -s - server --cluster-init
+
+cat /var/lib/rancher/k3s/server/node-token
+Update the token in this file
+
+#######################
+# Second Master Node #
+#######################
+ssh nickm@10.154.2.93
+sudo su -
+/usr/local/bin/k3s-killall.sh
+/usr/local/bin/k3s-uninstall.sh
+/usr/local/bin/k3s-agent-uninstall.sh
+
+k3s_token="K1026e692c09900990359e4959bea4c6b5bf943ddb7b2ca1d4bb7edfae7bff181da::server:c2f4a96a9a957e2c838c33c2f5707164"
+k3s_url="https://10.154.2.88:6443"
+node_ip="10.154.2.93"
+node_name="kudu.loseyourip.com"
+curl -sfL https://get.k3s.io | K3S_TOKEN=${k3s_token} K3S_NODE_IP=${node_ip} K3S_NODE_NAME=${node_name} sh -s - server --server ${k3s_url}
+
+#######################
+# Third Master Node #
+#######################
+ssh nickm@10.154.2.89
+sudo su -
+/usr/local/bin/k3s-killall.sh
+/usr/local/bin/k3s-uninstall.sh
+/usr/local/bin/k3s-agent-uninstall.sh
+
+k3s_token="K1026e692c09900990359e4959bea4c6b5bf943ddb7b2ca1d4bb7edfae7bff181da::server:c2f4a96a9a957e2c838c33c2f5707164"
+k3s_url="https://10.154.2.88:6443"
+node_ip="10.154.2.89"
+node_name="upupu.loseyourip.com"
+curl -sfL https://get.k3s.io | K3S_TOKEN=${k3s_token} K3S_NODE_IP=${node_ip} K3S_NODE_NAME=${node_name} sh -s - server --server ${k3s_url}
+
+#######################
+# First Worker Node #
+#######################
+ssh nickm@10.154.2.4
+sudo su -
+/usr/local/bin/k3s-killall.sh
+/usr/local/bin/k3s-uninstall.sh
+/usr/local/bin/k3s-agent-uninstall.sh
+
+k3s_token="K1026e692c09900990359e4959bea4c6b5bf943ddb7b2ca1d4bb7edfae7bff181da::server:c2f4a96a9a957e2c838c33c2f5707164"
+k3s_url="https://10.154.2.88:6443"
+node_ip="10.154.2.4"
+node_name="rabbit.loseyourip.com"
+curl -sfL https://get.k3s.io | K3S_URL=${k3s_url} K3S_TOKEN=${k3s_token} K3S_NODE_IP=${node_ip} K3S_NODE_NAME=${node_name} sh -
+
+#######################
+# Second Worker Node #
+#######################
+ssh nickm@10.154.2.188
+sudo su -
+/usr/local/bin/k3s-killall.sh
+/usr/local/bin/k3s-uninstall.sh
+/usr/local/bin/k3s-agent-uninstall.sh
+
+k3s_token="K1026e692c09900990359e4959bea4c6b5bf943ddb7b2ca1d4bb7edfae7bff181da::server:c2f4a96a9a957e2c838c33c2f5707164"
+k3s_url="https://10.154.2.88:6443"
+node_ip="10.154.2.188"
+node_name="tiger.loseyourip.com"
+curl -sfL https://get.k3s.io | K3S_URL=${k3s_url} K3S_TOKEN=${k3s_token} K3S_NODE_IP=${node_ip} K3S_NODE_NAME=${node_name} sh -
+
